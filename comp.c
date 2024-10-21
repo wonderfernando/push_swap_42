@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   comp.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ferda-si <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/21 19:41:33 by ferda-si          #+#    #+#             */
+/*   Updated: 2024/10/21 19:41:39 by ferda-si         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "push_swap.h"
 
 void	order_ten(t_stack **pilha_a, t_stack **pilha_b)
@@ -12,14 +23,12 @@ void	order_ten(t_stack **pilha_a, t_stack **pilha_b)
 	}
 	if (!ft_checksorted(*pilha_a) && ft_stack_lstsize(*pilha_a) == 3)
 		sort_true(pilha_a);
-
-	while(*pilha_b != NULL)
+	while (*pilha_b != NULL)
 	{
 		fill_index(pilha_b);
 		aproximacao2(pilha_b);
 		ft_pa(pilha_a, pilha_b, 0);
-	}
-		
+	}	
 }
 
 void	quicksort(long *v, long inicio, long fim)
@@ -70,9 +79,11 @@ void	order_hundred(t_stack **pilha_a, t_stack **pilha_b, long diviser)
 
 	diviser_count = 1;
 	vetor_sort = getVetorSort(*pilha_a, &vetor_size);
-	while (diviser_count < diviser && !ft_checksorted(*pilha_a) && ft_stack_lstsize(*pilha_a) > 10 )
+	while (diviser_count < diviser && \
+			!ft_checksorted(*pilha_a) && ft_stack_lstsize(*pilha_a) > 10)
 	{
-		(*pilha_a)->key_nbr = vetor_sort[((diviser_count * vetor_size) / diviser) - 1];
+		(*pilha_a)->key_nbr = \
+			vetor_sort[((diviser_count * vetor_size) / diviser) - 1];
 		sort_aux(pilha_a, pilha_b);
 		diviser_count++;
 	}
