@@ -161,7 +161,7 @@ void fill_index(t_stack **stack)
 {
 	t_stack *current = *stack;
 	int index = 0;
-	
+
 	while (current != NULL)
 	{
 		current->index = index;
@@ -235,6 +235,18 @@ void	aproximacao(t_stack **a)
 		while ((*a)->nbr != ft_min(*a))
 			ft_rra(a, 0);
 }
+void	aproximacao2(t_stack **pilha_b)
+{
+	int	index_max;
+
+	index_max = ft_find_index(*pilha_b, ft_max(*pilha_b));
+	if (index_max < ft_stack_lstsize(*pilha_b) / 2)
+		while ((*pilha_b)->nbr != ft_max(*pilha_b))
+			ft_rb(pilha_b, 0);
+	else
+		while ((*pilha_b)->nbr != ft_max(*pilha_b))
+			ft_rrb(pilha_b, 0);
+}
  
 void	sort_true(t_stack **a)
 {
@@ -258,6 +270,7 @@ void	sort_true(t_stack **a)
 	else
 		ft_sa(a, 0);
 }
+
 int main(int argc, char **argv) 
 {
     t_stack *pilha_a;
@@ -265,8 +278,9 @@ int main(int argc, char **argv)
 	pilha_b = NULL;
 	if(argc == 1)
 		return (0);
-
+	
     pilha_a = ft_init(argc, argv);
+	
 	if (ft_checkdup(pilha_a))
 	{
 		ft_free(&pilha_a);
@@ -283,10 +297,14 @@ int main(int argc, char **argv)
 		{
 			order_ten(&pilha_a, &pilha_b);
 		}
-	/* 	if (ft_stack_lstsize(pilha_a) > && ft_stack_lstsize(pilha_a)<= 200)
+		if (ft_stack_lstsize(pilha_a) > 10 && ft_stack_lstsize(pilha_a) <= 200)
 		{
-
-		} */
+			order_hundred(&pilha_a, &pilha_b, 4);
+		}
+		if (ft_stack_lstsize(pilha_a) > 200)
+		{
+			order_hundred(&pilha_a, &pilha_b, 16);
+		}
 	}
 	return (0); 
 }
@@ -306,10 +324,110 @@ void	order_ten(t_stack **pilha_a, t_stack **pilha_b)
 		sort_true(pilha_a);
 
 	while(*pilha_b != NULL)
+	{
+		fill_index(pilha_b);
+		aproximacao2(pilha_b);
 		ft_pa(pilha_a, pilha_b, 0);
+	}
 		
 }	
+long	particiona(long *v, long inicio, long fim)
+{
+	long	pivo;
+	long	temp;
 
+	pivo = (v[inicio] + v[fim] + v[(inicio + fim) / 2]) / 3;
+	while (inicio < fim)
+	{
+		while (inicio < fim && v[inicio] <= pivo)
+			inicio++;
+		while (inicio < fim && v[fim] > pivo)
+			fim--;
+		temp = v[inicio];
+		v[inicio] = v[fim];
+		v[fim] = temp;
+	}
+	return (inicio);
+}
+
+
+void	quicksort(long *v, long inicio, long fim)
+{
+	long	pos;
+
+	if (inicio < fim)
+	{
+		pos = particiona(v, inicio, fim);
+		quicksort(v, inicio, pos - 1);
+		quicksort(v, pos, fim);
+	}
+}
+
+long	*getVetorSort(t_stack *a, long *tm)
+{
+	long	*vet;
+	int		i;
+
+	i = 0;
+	vet = malloc(sizeof(long) * ft_stack_lstsize(a));
+	while (a)
+	{
+		vet[i] = a->nbr;
+		a = a->next;
+		i++;
+	}
+	*tm = i;
+	quicksort(vet, 0, i - 1);
+	return (vet);
+}
+
+void	sort_aux(t_stack **pilha_a, t_stack **pilha_b)
+{
+	int		index_min;
+	long	aux;
+	t_stack	*tmp;
+
+	aux = (*pilha_a)->key_nbr;
+	tmp = *pilha_a;
+	while (tmp)
+	{
+		if (tmp->nbr <= aux)
+		{
+			fill_index(pilha_a);
+			index_min = ft_find_index(*pilha_a, tmp->nbr);
+			if ((index_min < ft_stack_lstsize(*pilha_a) / 2))
+				while ((*pilha_a)->nbr != tmp->nbr)
+					ft_ra(pilha_a, 0);
+			else
+				while ((*pilha_a)->nbr != tmp->nbr)
+					ft_rra(pilha_a, 0);
+			while (*pilha_a && (*pilha_a)->nbr <= aux)
+				ft_pb(pilha_a, pilha_b);
+			tmp = *pilha_a;
+		}
+		tmp = tmp->next;
+	}
+}
+
+void	order_hundred(t_stack **pilha_a, t_stack **pilha_b, long diviser)
+{
+	long	*vetor_sort;
+	long	diviser_count;
+	long	vetor_size;
+
+	diviser_count = 1;
+	vetor_sort = getVetorSort(*pilha_a, &vetor_size);
+	while (diviser_count < diviser && !ft_checksorted(*pilha_a) && ft_stack_lstsize(*pilha_a) > 10 )
+	{
+		(*pilha_a)->key_nbr = vetor_sort[((diviser_count * vetor_size) / diviser) - 1];
+		sort_aux(pilha_a, pilha_b);
+		diviser_count++;
+	}
+	order_ten(pilha_a, pilha_b);
+
+
+}
+ 
 /* t_stack *tmp = pilha_a;
 			while (tmp)
 			{

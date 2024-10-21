@@ -15,6 +15,42 @@ void	ft_ra(t_stack **a, int j)
 		write(1, "ra\n", 3);
 }
 
+void	ft_rrb(t_stack **b, int j)
+{
+	t_stack	*prev;
+	t_stack	*last;
+
+	if (!*b || !((*b)->next))
+		return ;
+	last = *b;
+	while (last->next)
+	{
+		prev = last;
+		last = last->next;
+	}
+	prev->next = NULL;
+	last->next = *b;
+	*b = last;
+	if (j == 0)
+		write(1, "rrb\n", 4);
+}
+
+void	ft_rb(t_stack **b, int j)
+{
+	t_stack	*tmp;
+	t_stack	*last;
+
+	if (!*b || !((*b)->next))
+		return ;
+	tmp = *b;
+	*b = (*b)->next;
+	last = ft_stack_lstlast(tmp);
+	last->next = tmp;
+	tmp->next = NULL;
+	if (j == 0)
+		write(1, "rb\n", 3);
+}
+
 void	ft_sa(t_stack **a, int j)
 {
 	t_stack	*tmp;

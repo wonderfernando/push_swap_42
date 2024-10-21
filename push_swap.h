@@ -46,6 +46,16 @@ void	ft_pb(t_stack **stack_a, t_stack **stack_b);
 int		ft_max(t_stack *a);
 int		ft_find_index(t_stack *a, int nbr);
 void	aproximacao(t_stack **a);
+void	aproximacao2(t_stack **b);
+void	ft_rrb(t_stack **b, int j);
+void	ft_rb(t_stack **b, int j);
 void	sort_true(t_stack **a);
- 
+ void	order_ten(t_stack **pilha_a, t_stack **pilha_b);
+long	particiona(long *v, long inicio, long fim);
+void	quicksort(long *v, long inicio, long fim);
+long	*getVetorSort(t_stack *a, long *tm);
+
+void	sort_aux(t_stack **pilha_a, t_stack **pilha_b);
+
+void	order_hundred(t_stack **pilha_a, t_stack **pilha_b, long diviser);
 #endif 
