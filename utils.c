@@ -30,7 +30,6 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-
 void	ft_free(t_stack **lst)
 {
 	t_stack	*tmp;
