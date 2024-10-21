@@ -49,7 +49,7 @@ void	sort_true(t_stack **a);
 void	order_ten(t_stack **pilha_a, t_stack **pilha_b);
 long	particiona(long *v, long inicio, long fim);
 void	quicksort(long *v, long inicio, long fim);
-long	*getVetorSort(t_stack *a, long *tm);
+long	*get_vetor_sort(t_stack *a, long *tm);
 void	sort_aux(t_stack **pilha_a, t_stack **pilha_b);
 void	order_hundred(t_stack **pilha_a, t_stack **pilha_b, long diviser);
 

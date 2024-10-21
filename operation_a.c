@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   operation_a.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ferda-si <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/21 19:47:24 by ferda-si          #+#    #+#             */
+/*   Updated: 2024/10/21 19:47:27 by ferda-si         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	ft_ra(t_stack **a, int j)
@@ -10,14 +22,11 @@ void	ft_ra(t_stack **a, int j)
 	tmp = *a;
 	last = ft_stack_lstlast(tmp);
 	*a = (*a)->next;
-	last->next = tmp; 
+	last->next = tmp;
 	tmp->next = NULL;
 	if (j == 0)
 		write(1, "ra\n", 3);
 }
-
-
-
 
 void	ft_sa(t_stack **a, int j)
 {

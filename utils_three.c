@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_three.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ferda-si <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/21 19:48:38 by ferda-si          #+#    #+#             */
+/*   Updated: 2024/10/21 19:48:41 by ferda-si         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "push_swap.h"
 
 long	particiona(long *v, long inicio, long fim)
@@ -19,9 +30,7 @@ long	particiona(long *v, long inicio, long fim)
 	return (inicio);
 }
 
-
-
-long	*getVetorSort(t_stack *a, long *tm)
+long	*get_vetor_sort(t_stack *a, long *tm)
 {
 	long	*vet;
 	int		i;
@@ -51,6 +60,7 @@ void	aproximacao(t_stack **a)
 		while ((*a)->nbr != ft_min(*a))
 			ft_rra(a, 0);
 }
+
 void	aproximacao2(t_stack **pilha_b)
 {
 	int	index_max;
@@ -63,7 +73,6 @@ void	aproximacao2(t_stack **pilha_b)
 		while ((*pilha_b)->nbr != ft_max(*pilha_b))
 			ft_rrb(pilha_b, 0);
 }
- 
 
 t_stack	*ft_stack_new(int content)
 {

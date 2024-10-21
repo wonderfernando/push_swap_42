@@ -78,7 +78,7 @@ void	order_hundred(t_stack **pilha_a, t_stack **pilha_b, long diviser)
 	long	vetor_size;
 
 	diviser_count = 1;
-	vetor_sort = getVetorSort(*pilha_a, &vetor_size);
+	vetor_sort = get_vetor_sort(*pilha_a, &vetor_size);
 	while (diviser_count < diviser && \
 			!ft_checksorted(*pilha_a) && ft_stack_lstsize(*pilha_a) > 10)
 	{
