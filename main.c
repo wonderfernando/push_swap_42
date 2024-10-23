@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-t_stack	*ft_init_sub(char **argv)
+t_stack	*ft_init_sub(char **argv, int argc)
 {
 	t_stack	*a;
 	char	**tmp;
@@ -20,6 +20,7 @@ t_stack	*ft_init_sub(char **argv)
 
 	a = NULL;
 	i = 0;
+	verify_valid_number(argv, argc);
 	tmp = ft_split(argv[1], 32);
 	while (tmp[i])
 	{
@@ -43,9 +44,10 @@ t_stack	*ft_init(int argc, char **argv)
 	if (argc > 1)
 	{
 		if (argc == 2)
-			a = ft_init_sub(argv);
+			a = ft_init_sub(argv, argc);
 		else
 		{
+			verify_valid_number(argv, argc);
 			while (i < argc)
 			{
 				j = ft_atoi_limit(argv[i]);

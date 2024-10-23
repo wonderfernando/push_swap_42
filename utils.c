@@ -60,7 +60,7 @@ void	ft_freestr(char **lst)
 	*lst = NULL;
 }
 
-int	ft_atoi_limit(const char *str)
+long	ft_atoi_limit(const char *str)
 {
 	int				mod;
 	long long int	i;
@@ -79,12 +79,8 @@ int	ft_atoi_limit(const char *str)
 		str++;
 	while (*str)
 	{
-		if (!ft_isdigit(*str))
-			ft_error();
 		i = i * 10 + (*str - 48);
 		str++;
 	}
-	if ((mod * i) > 2147483647 || (mod * i) < -2147483648)
-		ft_error();
 	return (mod * i);
 }

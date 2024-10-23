@@ -13,6 +13,7 @@ SRC = main.c \
 	utils_two.c \
 	utils.c \
 	ft_split.c \
+	check_arg.c \
 
 all: $(NAME)
 

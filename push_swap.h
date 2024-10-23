@@ -28,7 +28,8 @@ typedef struct s_stack
 
 long			particiona(long *v, long inicio, long fim);
 long			*get_vetor_sort(t_stack *a, long *tm);
-int				ft_atoi_limit(const char *str);
+long			ft_atoi_limit(const char *str);
+int				ft_isdigit_str(char *str);
 int				ft_isdigit(int c);
 int				ft_checkdup(t_stack *a);
 int				ft_checksorted(t_stack *stack_a);
@@ -39,6 +40,8 @@ int				ft_find_index(t_stack *a, int nbr);
 size_t			ft_strlen(const char *s);
 void			ft_error(void);
 void			ft_ra(t_stack **a, int j);
+void			liberty(char **tmp, char **tmp2, int argc);
+void			verify_valid_number(char **argv, int argc);
 void			ft_sa(t_stack **a, int j);
 void			ft_pa(t_stack **a, t_stack **b, int j);
 void			ft_rra(t_stack **a, int j);
@@ -60,7 +63,7 @@ void			sort_aux(t_stack **pilha_a, t_stack **pilha_b);
 void			order_hundred(t_stack **pilha_a, \
 				t_stack **pilha_b, long diviser);
 t_stack			*ft_stack_lstlast(t_stack *lst);
-t_stack			*ft_init_sub(char **argv);
+t_stack			*ft_init_sub(char **argv, int argc);
 t_stack			*ft_stack_new(int content);
 t_stack			*ft_init(int argc, char **argv);
 
